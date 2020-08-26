@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "964504546455",
+    "firebase_url": "https://retotech-4805f.firebaseio.com",
+    "project_id": "retotech-4805f",
+    "storage_bucket": "retotech-4805f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964504546455:android:f62033dad997841dea4dd2",
+        "android_client_info": {
+          "package_name": "com.nicolasfanin.retotech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "964504546455-48mrpokq777nkaap900l7ra3eehbuh4t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArcyYT3Epgl3KnLVpr_UKsbCN9yET8r2w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "964504546455-48mrpokq777nkaap900l7ra3eehbuh4t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
