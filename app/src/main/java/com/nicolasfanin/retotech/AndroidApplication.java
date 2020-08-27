@@ -8,7 +8,7 @@ import com.nicolasfanin.retotech.core.di.DaggerApplicationComponent;
 
 public class AndroidApplication extends Application {
 
-    private ApplicationComponent appComponent;
+    public ApplicationComponent appComponent;
 
     @Override
     public void onCreate() {
