@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">My Application</string>
+
+    //Login screen
+    <string name="login_welcome_title_txt">Welcome to RetoTech!</string>
+    <string name="login_welcome_message_txt">Please Log-in to continue!</string>
+    <string name="login_init_with_facebook_button">Init with Facebook</string>
+    <string name="login_phone_hint_example">Ej: 3513583940</string>
 </resources>
