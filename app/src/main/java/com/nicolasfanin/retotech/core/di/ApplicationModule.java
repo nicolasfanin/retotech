@@ -6,6 +6,7 @@ import android.content.Context;
 import com.nicolasfanin.retotech.core.firebase.FirebaseApi;
 import com.nicolasfanin.retotech.data.repository.LoginRepoImpl;
 import com.nicolasfanin.retotech.domain.repository.LoginRepo;
+import com.nicolasfanin.retotech.presentation.viewmodel.AuthViewModel;
 
 import javax.inject.Singleton;
 
