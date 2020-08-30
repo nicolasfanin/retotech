@@ -9,7 +9,6 @@ import com.nicolasfanin.retotech.domain.repository.LoginRepo;
 import javax.inject.Inject;
 
 import androidx.lifecycle.MutableLiveData;
-import io.reactivex.rxjava3.core.Completable;
 
 public class LoginRepoImpl implements LoginRepo {
 

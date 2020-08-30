@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.google.android.gms.tasks.TaskExecutors;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -15,8 +14,6 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 import androidx.lifecycle.MutableLiveData;
-import io.reactivex.rxjava3.core.Completable;
-import io.reactivex.rxjava3.core.CompletableOnSubscribe;
 
 
 public class FirebaseApi implements Executor {
@@ -70,6 +67,8 @@ public class FirebaseApi implements Executor {
     public void signOut() {
         auth.signOut();
     }
+
+    //public void
 
     //credential.setValue(phoneAuthCredential);
     //task.getResult().getUser().getPhoneNumber()

@@ -28,13 +28,17 @@ public class SplashFragment extends BaseFragment {
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
-                initNavigation();
+                initLoginNavigation();
             }
         }, SPLASH_DISPLAY_LENGTH);
         return rootView;
     }
 
-    private void initNavigation() {
+    private void initLoginNavigation() {
         Navigation.findNavController(requireView()).navigate(R.id.action_splashFragment_to_loginFragment);
+    }
+
+    private void initHomeNavigation() {
+        Navigation.findNavController(requireView()).navigate(R.id.action_splashFragment_to_homeFragment);
     }
 }

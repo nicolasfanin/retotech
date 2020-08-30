@@ -5,7 +5,6 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
 import androidx.lifecycle.MutableLiveData;
-import io.reactivex.rxjava3.core.Completable;
 
 public interface LoginRepo {
 

@@ -5,6 +5,7 @@ import com.nicolasfanin.retotech.AndroidApplication;
 import com.nicolasfanin.retotech.presentation.activity.AuthenticateActivity;
 import com.nicolasfanin.retotech.presentation.activity.HomeActivity;
 import com.nicolasfanin.retotech.presentation.fragment.AuthenticateFragment;
+import com.nicolasfanin.retotech.presentation.fragment.HomeFragment;
 
 import javax.inject.Singleton;
 
@@ -18,4 +19,5 @@ public interface ApplicationComponent {
     void inject(HomeActivity homeActivity);
     void inject(AuthenticateFragment authenticateFragment);
     void inject(AuthenticateActivity authenticateActivity);
+    void inject(HomeFragment homefragment);
 }
