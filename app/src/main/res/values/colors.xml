@@ -6,4 +6,8 @@
 
     <color name="white">#fff</color>
     <color name="facebook_blue">#3b5998</color>
+
+    <color name="enabled_button">#ff9900</color>
+    <color name="disabled_button">#B8B8B8</color>
+
 </resources>

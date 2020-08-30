@@ -4,8 +4,12 @@ import android.app.Application;
 import android.content.Context;
 
 import com.nicolasfanin.retotech.core.firebase.FirebaseApi;
+import com.nicolasfanin.retotech.core.firebase.FirebaseRealTimeDatabase;
+import com.nicolasfanin.retotech.data.repository.CreateClientRepoImpl;
 import com.nicolasfanin.retotech.data.repository.LoginRepoImpl;
+import com.nicolasfanin.retotech.domain.repository.CreateClientRepo;
 import com.nicolasfanin.retotech.domain.repository.LoginRepo;
+import com.nicolasfanin.retotech.presentation.viewmodel.AuthViewModel;
 
 import javax.inject.Singleton;
 
@@ -30,6 +34,12 @@ public class ApplicationModule {
     @Singleton
     public LoginRepo providesLoginRepo(FirebaseApi firebaseApi) {
         return new LoginRepoImpl(firebaseApi);
+    }
+
+    @Provides
+    @Singleton
+    public CreateClientRepo providesCreateClientRepo(FirebaseRealTimeDatabase firebaseRealTimeDatabase) {
+        return new CreateClientRepoImpl(firebaseRealTimeDatabase);
     }
 
 }
