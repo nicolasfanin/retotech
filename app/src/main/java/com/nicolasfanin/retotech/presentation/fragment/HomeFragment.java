@@ -1,6 +1,5 @@
 package com.nicolasfanin.retotech.presentation.fragment;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.Editable;
@@ -14,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.nicolasfanin.retotech.R;
+import com.nicolasfanin.retotech.core.platform.BaseFragment;
 import com.nicolasfanin.retotech.domain.model.ClientModel;
 import com.nicolasfanin.retotech.presentation.viewmodel.HomeViewModel;
 
@@ -25,9 +25,8 @@ import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragment {
 
     @Inject
     HomeViewModel viewModel;
@@ -47,10 +46,11 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         rootView = inflater.inflate(R.layout.fragment_home, container, false);
+        appComponent.inject(this);
 
         initViews();
 
-        viewModel.getCreatedUser().observe(getViewLifecycleOwner(), s -> onCreatedUserResponse(s));
+        viewModel.userCreated.observe(getViewLifecycleOwner(), s -> onCreatedUserResponse(s));
         return rootView;
     }
 
@@ -99,7 +99,6 @@ public class HomeFragment extends Fragment {
         return new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override

@@ -5,8 +5,9 @@ import com.nicolasfanin.retotech.domain.repository.CreateClientRepo;
 
 import javax.inject.Inject;
 
-import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class CreateClientUseCase {
 
@@ -18,7 +19,7 @@ public class CreateClientUseCase {
     }
 
     public Single<String> createClient(ClientModel clientModel) {
-        return Single.fromCallable(() -> (repository.createClient(clientModel)));
+        return Single.fromCallable(() -> (repository.createClient(clientModel))).subscribeOn(Schedulers.io());
     }
 
 

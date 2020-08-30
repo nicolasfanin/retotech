@@ -1,13 +1,13 @@
 package com.nicolasfanin.retotech.presentation.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
 
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.nicolasfanin.retotech.R;
@@ -39,12 +39,15 @@ public class AuthenticateFragment extends BaseFragment {
 
         initViews();
 
-        viewModel.getVerificationId().observe(getViewLifecycleOwner(), s -> onVerificationIdReceived(s));
-        viewModel.getCredential().observe(getViewLifecycleOwner(), phoneAuthCredential -> onCredentialReceived(phoneAuthCredential));
-        viewModel.getUser().observe(getViewLifecycleOwner(), user -> onUserSignedIn(user));
+        viewModel.verificationId.observe(getViewLifecycleOwner(), s -> onVerificationIdReceived(s));
+        viewModel.credential.observe(getViewLifecycleOwner(), phoneAuthCredential -> onCredentialReceived(phoneAuthCredential));
+        viewModel.user.observe(getViewLifecycleOwner(), user -> onUserSignedIn(user));
+        viewModel.authResult.observe(getViewLifecycleOwner(), authResult -> onAuthResult(authResult));
 
         return rootView;
     }
+
+
 
     private void initViews() {
         final EditText authenticatePhoneEditText = rootView.findViewById(R.id.authenticate_phone_number_edit_text);
@@ -92,6 +95,13 @@ public class AuthenticateFragment extends BaseFragment {
         //TODO: User is null because is not waiting it!
         //Log.d("FirebaseUser", user.getDisplayName());
         Navigation.findNavController(requireView()).navigate(R.id.action_authenticateFragment_to_homeFragment);
+    }
+
+    private void onAuthResult(AuthResult authResult) {
+        if (!authResult.getUser().getUid().isEmpty()) {
+
+            Navigation.findNavController(requireView()).navigate(R.id.action_authenticateFragment_to_homeFragment);
+        }
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.nicolasfanin.retotech.domain.usecase;
 
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -10,7 +12,9 @@ import javax.inject.Inject;
 import androidx.lifecycle.MutableLiveData;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class AuthenticateUserUseCase {
 
@@ -26,11 +30,11 @@ public class AuthenticateUserUseCase {
     }
 
     public Single<PhoneAuthCredential> verifyCode(String verificationId, String code) {
-       return Single.fromCallable(() -> repository.getCredential(verificationId, code));
+       return Single.fromCallable(() -> repository.getCredential(verificationId, code)).subscribeOn(Schedulers.io());
     }
 
-    public MutableLiveData<FirebaseUser> signInUser(PhoneAuthCredential credential) {
-        return repository.signInUser(credential);
+    public Single<Task<AuthResult>> signInUser(PhoneAuthCredential credential) {
+        return Single.fromCallable(()-> repository.signInUser(credential)).subscribeOn(Schedulers.io());
     }
 
     public FirebaseUser getSignedInUser() {

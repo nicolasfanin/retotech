@@ -1,5 +1,7 @@
 package com.nicolasfanin.retotech.data.repository;
 
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -7,8 +9,6 @@ import com.nicolasfanin.retotech.core.firebase.FirebaseApi;
 import com.nicolasfanin.retotech.domain.repository.LoginRepo;
 
 import javax.inject.Inject;
-
-import androidx.lifecycle.MutableLiveData;
 
 public class LoginRepoImpl implements LoginRepo {
 
@@ -30,7 +30,7 @@ public class LoginRepoImpl implements LoginRepo {
     }
 
     @Override
-    public MutableLiveData<FirebaseUser> signInUser(PhoneAuthCredential credential) {
+    public Task<AuthResult> signInUser(PhoneAuthCredential credential) {
         return firebaseApi.signInUser(credential);
     }
 

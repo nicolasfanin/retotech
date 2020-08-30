@@ -15,7 +15,7 @@ public class HomeViewModel extends BaseViewModel {
     @Inject
     CreateClientUseCase createClientUseCase;
 
-    private MutableLiveData<String> userCreated = new MutableLiveData<>();
+    public MutableLiveData<String> userCreated = new MutableLiveData<>();
 
     @Inject
     public HomeViewModel() { }
@@ -28,7 +28,7 @@ public class HomeViewModel extends BaseViewModel {
         );
     }
 
-    public MutableLiveData<String> getCreatedUser() {
+    public MutableLiveData<String> getCreatedClient() {
         return userCreated;
     }
 

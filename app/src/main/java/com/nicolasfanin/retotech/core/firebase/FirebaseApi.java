@@ -2,7 +2,9 @@ package com.nicolasfanin.retotech.core.firebase;
 
 import android.util.Log;
 
+import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskExecutors;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
@@ -40,19 +42,8 @@ public class FirebaseApi implements Executor {
         return PhoneAuthProvider.getCredential(verificationId, code);
     }
 
-    public MutableLiveData<FirebaseUser> signInUser(PhoneAuthCredential credential) {
-        MutableLiveData<FirebaseUser> mutableLiveDataUser = new MutableLiveData<>();
-        auth.signInWithCredential(credential).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                boolean isNewUser = task.getResult().getAdditionalUserInfo().isNewUser();
-                // Sign in success, update UI with the signed-in user's information
-                Log.d("Firebase::", "signInWithCredential:success");
-                if (task.getResult() != null) {
-                    //user = task.getResult().getUser();
-                    mutableLiveDataUser.setValue(task.getResult().getUser());
-                }
-        }});
-        return mutableLiveDataUser;
+    public Task<AuthResult> signInUser(PhoneAuthCredential credential) {
+        return auth.signInWithCredential(credential);
     }
 
     @Override
@@ -68,7 +59,6 @@ public class FirebaseApi implements Executor {
         auth.signOut();
     }
 
-    //public void
 
     //credential.setValue(phoneAuthCredential);
     //task.getResult().getUser().getPhoneNumber()
