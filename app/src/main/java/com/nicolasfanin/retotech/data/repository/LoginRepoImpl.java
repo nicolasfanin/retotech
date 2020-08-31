@@ -38,4 +38,9 @@ public class LoginRepoImpl implements LoginRepo {
     public FirebaseUser getSignedInUser() {
         return firebaseApi.getSignedInUser();
     }
+
+    @Override
+    public void signOut() {
+        firebaseApi.signOut();
+    }
 }

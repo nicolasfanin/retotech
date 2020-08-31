@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.nicolasfanin.retotech.R;
@@ -25,6 +26,7 @@ import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.navigation.Navigation;
 
 public class HomeFragment extends BaseFragment {
 
@@ -39,6 +41,7 @@ public class HomeFragment extends BaseFragment {
     private EditText ageEditText;
     private EditText birthDateEditText;
     private Button createClientButton;
+    private ImageButton signOutButton;
 
 
     @Nullable
@@ -55,6 +58,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     public void initViews() {
+        signOutButton = rootView.findViewById(R.id.home_sign_out_button);
         nameEditText = rootView.findViewById(R.id.name_edit_text);
         surnameEditText = rootView.findViewById(R.id.surname_edit_text);
         ageEditText = rootView.findViewById(R.id.age_edit_text);
@@ -91,6 +95,14 @@ public class HomeFragment extends BaseFragment {
                         surnameEditText.getText().toString(),
                         Integer.parseInt(ageEditText.getText().toString()),
                         birthDateEditText.getText().toString()));
+            }
+        });
+
+        signOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.signOut();
+                Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment_to_splashFragment);
             }
         });
     }

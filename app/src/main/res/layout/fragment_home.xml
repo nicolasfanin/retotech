@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     android:layout_margin="16dp">
 
+    <ImageButton
+        android:id="@+id/home_sign_out_button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_log_out"
+        android:contentDescription="Sign out"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/home_create_client_text_view"
         android:layout_width="wrap_content"
@@ -46,9 +55,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_top_margin"
-        android:inputType="text"
         android:hint="Surname"
         android:imeOptions="actionNext"
+        android:inputType="text"
         android:maxLines="1"
         android:nextFocusDown="@id/age_edit_text"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,9 +99,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_top_margin"
-        android:hint="CREATE CLIENT"
         android:background="@color/disabled_button"
         android:enabled="false"
+        android:hint="CREATE CLIENT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

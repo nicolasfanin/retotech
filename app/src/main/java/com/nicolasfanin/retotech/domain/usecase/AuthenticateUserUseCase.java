@@ -47,4 +47,8 @@ public class AuthenticateUserUseCase {
                     .defaultIfEmpty(EMPTY_VALUE)
                     .subscribeOn(Schedulers.io());
     }
+
+    public void signOut() {
+        repository.signOut();
+    }
 }

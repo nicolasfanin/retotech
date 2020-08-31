@@ -15,4 +15,6 @@ public interface LoginRepo {
     Task<AuthResult> signInUser(PhoneAuthCredential credential);
 
     FirebaseUser getSignedInUser();
+
+    void signOut();
 }

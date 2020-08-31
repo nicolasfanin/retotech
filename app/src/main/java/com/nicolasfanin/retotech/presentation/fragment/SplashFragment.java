@@ -6,10 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.firebase.auth.FirebaseUser;
 import com.nicolasfanin.retotech.R;
 import com.nicolasfanin.retotech.core.platform.BaseFragment;
-import com.nicolasfanin.retotech.presentation.viewmodel.AuthViewModel;
 import com.nicolasfanin.retotech.presentation.viewmodel.SplashViewModel;
 
 import javax.inject.Inject;
