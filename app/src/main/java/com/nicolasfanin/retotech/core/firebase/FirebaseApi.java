@@ -15,13 +15,9 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
-import androidx.lifecycle.MutableLiveData;
-
-
 public class FirebaseApi implements Executor {
 
     private FirebaseAuth auth;
-    private FirebaseUser user;
 
     @Inject
     public FirebaseApi() {
@@ -52,7 +48,7 @@ public class FirebaseApi implements Executor {
     }
 
     public FirebaseUser getSignedInUser() {
-        return user;
+        return auth.getCurrentUser();
     }
 
     public void signOut() {

@@ -6,8 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseUser;
 import com.nicolasfanin.retotech.R;
 import com.nicolasfanin.retotech.core.platform.BaseFragment;
+import com.nicolasfanin.retotech.presentation.viewmodel.AuthViewModel;
+import com.nicolasfanin.retotech.presentation.viewmodel.SplashViewModel;
+
+import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +20,8 @@ import androidx.navigation.Navigation;
 
 public class SplashFragment extends BaseFragment {
 
+    @Inject
+    SplashViewModel viewModel;
 
     private final int SPLASH_DISPLAY_LENGTH = 3000;
 
@@ -23,15 +30,30 @@ public class SplashFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_splash, container, false);
+        appComponent.inject(this);
 
-        //TODO: Verify if user is logged in!
-        new Handler().postDelayed(new Runnable(){
+        viewModel.user.observe(getViewLifecycleOwner(), value -> onUserResponse(value));
+        return rootView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        viewModel.checkIfUserIsSignedIn();
+    }
+
+    private void onUserResponse(String userId) {
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                initLoginNavigation();
+                if (userId.isEmpty()) {
+                    initLoginNavigation();
+                } else {
+                    initHomeNavigation();
+                }
             }
         }, SPLASH_DISPLAY_LENGTH);
-        return rootView;
+
     }
 
     private void initLoginNavigation() {

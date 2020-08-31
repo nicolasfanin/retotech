@@ -15,7 +15,7 @@ public class HomeViewModel extends BaseViewModel {
     @Inject
     CreateClientUseCase createClientUseCase;
 
-    public MutableLiveData<String> userCreated = new MutableLiveData<>();
+    public MutableLiveData<String> clientCreated = new MutableLiveData<>();
 
     @Inject
     public HomeViewModel() { }
@@ -24,12 +24,12 @@ public class HomeViewModel extends BaseViewModel {
         compositeDisposable.add(
                 createClientUseCase.createClient(clientModel)
                                    .observeOn(AndroidSchedulers.mainThread())
-                                   .subscribe(value -> userCreated.setValue(value))
+                                   .subscribe(value -> clientCreated.setValue(value))
         );
     }
 
     public MutableLiveData<String> getCreatedClient() {
-        return userCreated;
+        return clientCreated;
     }
 
 

@@ -50,7 +50,7 @@ public class HomeFragment extends BaseFragment {
 
         initViews();
 
-        viewModel.userCreated.observe(getViewLifecycleOwner(), s -> onCreatedUserResponse(s));
+        viewModel.clientCreated.observe(getViewLifecycleOwner(), s -> onCreatedUserResponse(s));
         return rootView;
     }
 
