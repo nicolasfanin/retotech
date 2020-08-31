@@ -1,6 +1,8 @@
 package com.nicolasfanin.retotech.presentation.fragment;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -27,6 +29,8 @@ import javax.inject.Inject;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.navigation.Navigation;
+
+import static com.nicolasfanin.retotech.core.utils.Constants.EMPTY_VALUE;
 
 public class HomeFragment extends BaseFragment {
 
@@ -91,18 +95,40 @@ public class HomeFragment extends BaseFragment {
         createClientButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.createClient(new ClientModel(nameEditText.getText().toString(),
-                        surnameEditText.getText().toString(),
-                        Integer.parseInt(ageEditText.getText().toString()),
-                        birthDateEditText.getText().toString()));
+                new AlertDialog.Builder(getActivity())
+                        .setIcon(android.R.drawable.ic_dialog_info)
+                        .setTitle(getString(R.string.create_client_title))
+                        .setMessage(getString(R.string.create_client_message))
+                        .setPositiveButton(R.string.create_client_positive_button, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                viewModel.createClient(new ClientModel(nameEditText.getText().toString(),
+                                        surnameEditText.getText().toString(),
+                                        Integer.parseInt(ageEditText.getText().toString()),
+                                        birthDateEditText.getText().toString()));
+                            }
+                        })
+                        .setNegativeButton(R.string.create_client_negative_button, null)
+                        .show();
             }
         });
 
         signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.signOut();
-                Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment_to_splashFragment);
+                new AlertDialog.Builder(getActivity())
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle(getString(R.string.close_session_title))
+                    .setMessage(getString(R.string.close_session_message))
+                    .setPositiveButton(R.string.close_session_positive_button, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            viewModel.signOut();
+                            Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment_to_splashFragment);
+                        }
+                    })
+                    .setNegativeButton(R.string.close_session_negative_button, null)
+                    .show();
             }
         });
     }
@@ -148,6 +174,11 @@ public class HomeFragment extends BaseFragment {
 
 
     private void onCreatedUserResponse(String s) {
-        Toast.makeText(getContext(), "Created user in database with: " + s, Toast.LENGTH_LONG).show();
+        nameEditText.setText(EMPTY_VALUE);
+        surnameEditText.setText(EMPTY_VALUE);
+        ageEditText.setText(EMPTY_VALUE);
+        birthDateEditText.setText(EMPTY_VALUE);
+
+        Toast.makeText(getContext(), "Created client in database with id: " + s, Toast.LENGTH_LONG).show();
     }
 }

@@ -1,5 +1,7 @@
 package com.nicolasfanin.retotech.presentation.viewmodel;
 
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.nicolasfanin.retotech.core.platform.BaseViewModel;
 import com.nicolasfanin.retotech.domain.model.ClientModel;
 import com.nicolasfanin.retotech.domain.usecase.AuthenticateUserUseCase;
@@ -7,9 +9,9 @@ import com.nicolasfanin.retotech.domain.usecase.CreateClientUseCase;
 
 import javax.inject.Inject;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-
 
 public class HomeViewModel extends BaseViewModel {
 
@@ -20,19 +22,19 @@ public class HomeViewModel extends BaseViewModel {
 
     public MutableLiveData<String> clientCreated = new MutableLiveData<>();
 
-    @Inject
-    public HomeViewModel() { }
+    private DatabaseReference.CompletionListener listener = new DatabaseReference.CompletionListener() {
+        @Override
+        public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+            clientCreated.setValue(ref.getKey());
+        }
+    };
 
-    public void createClient(ClientModel clientModel) {
-        compositeDisposable.add(
-                createClientUseCase.createClient(clientModel)
-                                   .observeOn(AndroidSchedulers.mainThread())
-                                   .subscribe(value -> clientCreated.setValue(value))
-        );
+    @Inject
+    public HomeViewModel() {
     }
 
-    public MutableLiveData<String> getCreatedClient() {
-        return clientCreated;
+    public void createClient(ClientModel clientModel) {
+        createClientUseCase.createClient(clientModel, listener);
     }
 
     public void signOut() {

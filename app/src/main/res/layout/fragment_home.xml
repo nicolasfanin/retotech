@@ -101,10 +101,9 @@
         android:layout_marginTop="@dimen/default_top_margin"
         android:background="@color/disabled_button"
         android:enabled="false"
-        android:hint="CREATE CLIENT"
+        android:text="@string/create_client_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

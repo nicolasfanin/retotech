@@ -79,14 +79,14 @@ public class AuthViewModel extends BaseViewModel {
                 authenticateUserUseCase.signInUser(credential)
                                        .observeOn(AndroidSchedulers.mainThread())
                                        .subscribe(value -> {
-                                           value.addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                               @Override
-                                               public void onComplete(@NonNull Task<AuthResult> task) {
-                                                    if(task.isSuccessful()) {
-                                                        authResult.setValue(value.getResult());
-                                                    }
-                                               }
-                                           });
+                                                   value.addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                                       @Override
+                                                       public void onComplete(@NonNull Task<AuthResult> task) {
+                                                           if (task.isSuccessful()) {
+                                                               authResult.setValue(value.getResult());
+                                                           }
+                                                       }
+                                                   });
                                                }
                                                , error -> handleError(error))
         );
@@ -94,18 +94,6 @@ public class AuthViewModel extends BaseViewModel {
 
     private void handleError(Throwable error) {
         Log.d("ERROR::::", error.getMessage());
-    }
-
-    public MutableLiveData<String> getVerificationId() {
-        return verificationId;
-    }
-
-    public MutableLiveData<PhoneAuthCredential> getCredential() {
-        return credential;
-    }
-
-    public MutableLiveData<FirebaseUser> getUser() {
-        return user;
     }
 
 }

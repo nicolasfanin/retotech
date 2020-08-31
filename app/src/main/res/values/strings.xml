@@ -6,4 +6,14 @@
     <string name="login_welcome_message_txt">Please validate your phone number to login!</string>
     <string name="login_init_with_facebook_button">Init with Facebook</string>
     <string name="login_phone_hint_example">Ej: 3513583940</string>
+    <string name="close_session_title">Close session?</string>
+
+    <string name="close_session_message">Are you sure you want to close session?</string>
+    <string name="close_session_positive_button">Accept</string>
+    <string name="close_session_negative_button">Cancel</string>
+    <string name="create_client_title">Create a new client on Firebase?</string>
+    <string name="create_client_message">This action will create a new Client on Firebase Database!</string>
+    <string name="create_client_positive_button">Accept</string>
+    <string name="create_client_negative_button">Cancel</string>
+    <string name="create_client_button">CREATE CLIENT</string>
 </resources>

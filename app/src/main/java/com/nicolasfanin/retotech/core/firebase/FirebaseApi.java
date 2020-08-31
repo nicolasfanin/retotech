@@ -54,9 +54,4 @@ public class FirebaseApi implements Executor {
     public void signOut() {
         auth.signOut();
     }
-
-
-    //credential.setValue(phoneAuthCredential);
-    //task.getResult().getUser().getPhoneNumber()
-    //task.getResult().getUser().getUid()
 }

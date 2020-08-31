@@ -1,9 +1,9 @@
 package com.nicolasfanin.retotech.domain.repository;
 
+import com.google.firebase.database.DatabaseReference;
 import com.nicolasfanin.retotech.domain.model.ClientModel;
 
 public interface CreateClientRepo {
 
-    String createClient(ClientModel clientModel);
-
+    void createClient(ClientModel clientModel, DatabaseReference.CompletionListener listener);
 }
