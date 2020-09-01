@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:background="@drawable/main_background"
     android:layout_margin="@dimen/default_margin">
 
     <TextView
@@ -18,25 +19,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/instructions_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/login_welcome_message_txt"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@id/login_phone_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/welcome_text" />
-
     <ImageView
         android:id="@+id/login_phone_image"
         android:layout_width="wrap_content"
         android:layout_height="150dp"
         android:layout_marginTop="50dp"
         android:src="@drawable/ic_phone_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/welcome_text" />
+
+    <TextView
+        android:id="@+id/instructions_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="@string/login_welcome_message_txt"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_phone_image" />
+
+    <ProgressBar
+        android:id="@+id/authentication_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="@string/login_welcome_message_txt"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/instructions_text" />
@@ -51,8 +63,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_phone_image"
-        tools:visibility="gone">
+        app:layout_constraintTop_toBottomOf="@id/authentication_progress_bar"
+        tools:visibility="visible">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -69,9 +81,8 @@
                 android:drawableStart="@drawable/ic_phone"
                 android:drawablePadding="8dp"
                 android:hint="@string/login_phone_hint_example"
-                android:digits="0123456789,+"
-                android:maxLength="10"
                 android:inputType="phone"
+                android:maxLength="10"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/send_phone_number_button"
@@ -84,6 +95,8 @@
                 android:layout_height="30dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/ic_send"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/authenticate_phone_number_edit_text"
@@ -104,8 +117,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_phone_image"
-        tools:visibility="visible">
+        app:layout_constraintTop_toBottomOf="@id/authentication_progress_bar"
+        tools:visibility="gone">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -120,8 +133,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:drawablePadding="8dp"
-                android:inputType="phone"
                 android:hint="123456"
+                android:inputType="phone"
                 android:maxLength="6"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -135,6 +148,8 @@
                 android:layout_height="30dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/ic_send"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/authenticate_code_edit_text"

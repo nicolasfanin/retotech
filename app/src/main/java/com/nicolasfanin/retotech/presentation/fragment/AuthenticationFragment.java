@@ -5,13 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.nicolasfanin.retotech.R;
 import com.nicolasfanin.retotech.core.platform.BaseFragment;
+import com.nicolasfanin.retotech.databinding.FragmentAuthenticationBinding;
 import com.nicolasfanin.retotech.presentation.viewmodel.AuthViewModel;
 
 import java.util.regex.Matcher;
@@ -28,7 +28,8 @@ public class AuthenticationFragment extends BaseFragment {
     @Inject
     AuthViewModel viewModel;
 
-    private View rootView;
+    private FragmentAuthenticationBinding binding;
+
     private static final String VERIFICATION_IN_PROCESS = "VERIFICATION_IN_PROCESS";
     private Boolean verificationInProcess = false;
 
@@ -36,7 +37,7 @@ public class AuthenticationFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        rootView = inflater.inflate(R.layout.fragment_authentication, container, false);
+        binding = FragmentAuthenticationBinding.inflate(getLayoutInflater());
         appComponent.inject(this);
 
         initViews();
@@ -45,15 +46,16 @@ public class AuthenticationFragment extends BaseFragment {
         viewModel.credential.observe(getViewLifecycleOwner(), phoneAuthCredential -> onCredentialReceived(phoneAuthCredential));
         viewModel.authResult.observe(getViewLifecycleOwner(), authResult -> onAuthResult(authResult));
 
-        return rootView;
+        return binding.getRoot();
     }
 
     private void initViews() {
-        final EditText authenticatePhoneEditText = rootView.findViewById(R.id.authenticate_phone_number_edit_text);
+        final EditText authenticatePhoneEditText = binding.authenticatePhoneNumberEditText;
 
-        rootView.findViewById(R.id.send_phone_number_button).setOnClickListener(new View.OnClickListener() {
+        binding.sendPhoneNumberButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                showLoader();
                 String phoneNumber = authenticatePhoneEditText.getText().toString();
                 if (isValidPhoneNumber(phoneNumber)) {
                     viewModel.verifyPhoneNumber("+549" + phoneNumber);
@@ -64,10 +66,17 @@ public class AuthenticationFragment extends BaseFragment {
             }
         });
 
-        final EditText loginPhoneEditText = rootView.findViewById(R.id.authenticate_code_edit_text);
+        final EditText loginPhoneEditText = binding.authenticateCodeEditText;
 
-        rootView.findViewById(R.id.authenticate_send_code_button).setOnClickListener(v -> viewModel.verifyCode(loginPhoneEditText.getText()
-                                                                                                                                 .toString()));
+        binding.authenticateSendCodeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLoader();
+                viewModel.verifyCode(loginPhoneEditText.getText().toString());
+            }
+        });
+
+        hideLoader();
     }
 
     private boolean isValidPhoneNumber(String phoneNumber) {
@@ -85,19 +94,26 @@ public class AuthenticationFragment extends BaseFragment {
         }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        binding = null;
+    }
+
     private void showCodeVerification() {
-        ((TextView) rootView.findViewById(R.id.instructions_text)).setText(R.string.login_code_validation_message_txt);
-        rootView.findViewById(R.id.phone_validation_card_view).setVisibility(View.GONE);
-        rootView.findViewById(R.id.code_validation_card_view).setVisibility(View.VISIBLE);
+        binding.instructionsText.setText(R.string.login_code_validation_message_txt);
+        binding.phoneValidationCardView.setVisibility(View.GONE);
+        binding.codeValidationCardView.setVisibility(View.VISIBLE);
     }
 
     private void hideCodeVerification() {
-        ((TextView) rootView.findViewById(R.id.instructions_text)).setText(R.string.login_welcome_message_txt);
-        rootView.findViewById(R.id.phone_validation_card_view).setVisibility(View.VISIBLE);
-        rootView.findViewById(R.id.code_validation_card_view).setVisibility(View.GONE);
+        binding.instructionsText.setText(R.string.login_welcome_message_txt);
+        binding.phoneValidationCardView.setVisibility(View.VISIBLE);
+        binding.codeValidationCardView.setVisibility(View.GONE);
     }
 
     private void onVerificationIdReceived(String s) {
+        hideLoader();
         showCodeVerification();
     }
 
@@ -106,8 +122,10 @@ public class AuthenticationFragment extends BaseFragment {
     }
 
     private void onAuthResult(AuthResult authResult) {
-        if (!authResult.getUser().getUid().isEmpty()) {
+        if(authResult != null) {
             Navigation.findNavController(requireView()).navigate(R.id.action_authenticationFragment_to_homeFragment);
+        } else {
+            Toast.makeText(getContext(), R.string.code_verification_error_message, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -123,5 +141,13 @@ public class AuthenticationFragment extends BaseFragment {
         if (savedInstanceState != null && savedInstanceState.containsKey(VERIFICATION_IN_PROCESS)) {
             verificationInProcess = savedInstanceState.getBoolean(VERIFICATION_IN_PROCESS);
         }
+    }
+
+    private void showLoader() {
+        binding.authenticationProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    private void hideLoader() {
+        binding.authenticationProgressBar.setVisibility(View.INVISIBLE);
     }
 }

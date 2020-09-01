@@ -83,6 +83,8 @@ public class AuthViewModel extends BaseViewModel {
                                                        public void onComplete(@NonNull Task<AuthResult> task) {
                                                            if (task.isSuccessful()) {
                                                                authResult.setValue(value.getResult());
+                                                           } else {
+                                                               authResult.setValue(null);
                                                            }
                                                        }
                                                    });

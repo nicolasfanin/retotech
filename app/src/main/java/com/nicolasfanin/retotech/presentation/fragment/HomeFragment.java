@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.nicolasfanin.retotech.R;
 import com.nicolasfanin.retotech.core.platform.BaseFragment;
+import com.nicolasfanin.retotech.databinding.FragmentHomeBinding;
 import com.nicolasfanin.retotech.domain.model.ClientModel;
 import com.nicolasfanin.retotech.presentation.viewmodel.HomeViewModel;
 
@@ -37,42 +38,28 @@ public class HomeFragment extends BaseFragment {
     @Inject
     HomeViewModel viewModel;
 
-    private View rootView;
+    private FragmentHomeBinding binding;
 
     private final Calendar calendar = Calendar.getInstance();
-    private EditText nameEditText;
-    private EditText surnameEditText;
-    private EditText ageEditText;
-    private EditText birthDateEditText;
-    private Button createClientButton;
-    private ImageButton signOutButton;
-
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        rootView = inflater.inflate(R.layout.fragment_home, container, false);
+        binding = FragmentHomeBinding.inflate(getLayoutInflater());
         appComponent.inject(this);
 
         initViews();
 
         viewModel.clientCreated.observe(getViewLifecycleOwner(), s -> onCreatedUserResponse(s));
-        return rootView;
+        return binding.getRoot();
     }
 
     public void initViews() {
-        signOutButton = rootView.findViewById(R.id.home_sign_out_button);
-        nameEditText = rootView.findViewById(R.id.name_edit_text);
-        surnameEditText = rootView.findViewById(R.id.surname_edit_text);
-        ageEditText = rootView.findViewById(R.id.age_edit_text);
-        birthDateEditText = rootView.findViewById(R.id.birth_date_edit_text);
-        createClientButton = rootView.findViewById(R.id.create_client_button);
-
-        nameEditText.addTextChangedListener(createTextWatcher());
-        surnameEditText.addTextChangedListener(createTextWatcher());
-        ageEditText.addTextChangedListener(createTextWatcher());
-        birthDateEditText.addTextChangedListener(createTextWatcher());
+        binding.nameEditText.addTextChangedListener(createTextWatcher());
+        binding.surnameEditText.addTextChangedListener(createTextWatcher());
+        binding.ageEditText.addTextChangedListener(createTextWatcher());
+        binding.birthDateEditText.addTextChangedListener(createTextWatcher());
 
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -84,7 +71,7 @@ public class HomeFragment extends BaseFragment {
             }
         };
 
-        birthDateEditText.setOnClickListener(new View.OnClickListener() {
+        binding.birthDateEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new DatePickerDialog(getContext(), date, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
@@ -92,7 +79,7 @@ public class HomeFragment extends BaseFragment {
             }
         });
 
-        createClientButton.setOnClickListener(new View.OnClickListener() {
+        binding.createClientButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(getActivity())
@@ -102,10 +89,10 @@ public class HomeFragment extends BaseFragment {
                         .setPositiveButton(R.string.create_client_positive_button, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                viewModel.createClient(new ClientModel(nameEditText.getText().toString(),
-                                        surnameEditText.getText().toString(),
-                                        Integer.parseInt(ageEditText.getText().toString()),
-                                        birthDateEditText.getText().toString()));
+                                viewModel.createClient(new ClientModel(binding.nameEditText.getText().toString(),
+                                        binding.surnameEditText.getText().toString(),
+                                        Integer.parseInt(binding.ageEditText.getText().toString()),
+                                        binding.birthDateEditText.getText().toString()));
                             }
                         })
                         .setNegativeButton(R.string.create_client_negative_button, null)
@@ -113,7 +100,7 @@ public class HomeFragment extends BaseFragment {
             }
         });
 
-        signOutButton.setOnClickListener(new View.OnClickListener() {
+        binding.homeSignOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(getActivity())
@@ -131,6 +118,12 @@ public class HomeFragment extends BaseFragment {
                         .show();
             }
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        binding = null;
     }
 
     private TextWatcher createTextWatcher() {
@@ -152,15 +145,15 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void checkRequiredFields() {
-        if (nameEditText.getText().toString().isEmpty()
-                || surnameEditText.getText().toString().isEmpty()
-                || ageEditText.getText().toString().isEmpty()
-                || birthDateEditText.getText().toString().isEmpty()) {
-            createClientButton.setEnabled(false);
-            createClientButton.setBackgroundColor(getResources().getColor(R.color.disabled_button));
+        if (binding.nameEditText.getText().toString().isEmpty()
+                || binding.surnameEditText.getText().toString().isEmpty()
+                || binding.ageEditText.getText().toString().isEmpty()
+                || binding.birthDateEditText.getText().toString().isEmpty()) {
+            binding.createClientButton.setEnabled(false);
+            binding.createClientButton.setBackgroundColor(getResources().getColor(R.color.disabled_button));
         } else {
-            createClientButton.setEnabled(true);
-            createClientButton.setBackgroundColor(getResources().getColor(R.color.enabled_button));
+            binding.createClientButton.setEnabled(true);
+            binding.createClientButton.setBackgroundColor(getResources().getColor(R.color.enabled_button));
         }
     }
 
@@ -169,15 +162,15 @@ public class HomeFragment extends BaseFragment {
         String formatDate = "dd/MM/yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formatDate, Locale.getDefault());
 
-        birthDateEditText.setText(simpleDateFormat.format(calendar.getTime()));
+        binding.birthDateEditText.setText(simpleDateFormat.format(calendar.getTime()));
     }
 
 
     private void onCreatedUserResponse(String s) {
-        nameEditText.setText(EMPTY_VALUE);
-        surnameEditText.setText(EMPTY_VALUE);
-        ageEditText.setText(EMPTY_VALUE);
-        birthDateEditText.setText(EMPTY_VALUE);
+        binding.nameEditText.setText(EMPTY_VALUE);
+        binding.surnameEditText.setText(EMPTY_VALUE);
+        binding.ageEditText.setText(EMPTY_VALUE);
+        binding.birthDateEditText.setText(EMPTY_VALUE);
 
         Toast.makeText(getContext(), getString(R.string.created_client_success, s), Toast.LENGTH_LONG).show();
     }

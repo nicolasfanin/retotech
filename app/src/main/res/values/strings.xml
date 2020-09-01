@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">RetoTech!</string>
 
     //Login screen
     <string name="login_welcome_title_txt">Welcome to RetoTech!</string>
@@ -20,5 +20,6 @@
     <string name="create_client_negative_button">Cancel</string>
     <string name="create_client_button">CREATE CLIENT</string>
     <string name="created_client_success">Created client in database with id: %1$s</string>
+    <string name="code_verification_error_message">Please verify your code!</string>
 
 </resources>
