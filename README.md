@@ -22,5 +22,8 @@ The base Architecture that I've used here:
 Activity / Fragment ----> View Model (LiveData) ----> Use Case ----> Repository ----> Firebase.
 
 Some Screenshots:
+![samsung1](https://user-images.githubusercontent.com/8115182/91866153-916f1c80-ec48-11ea-9f48-0c896cc7ab9f.png)
+![samsung2](https://user-images.githubusercontent.com/8115182/91866159-9338e000-ec48-11ea-9ffa-d60ec8b2ae2d.png)
+
 
 
