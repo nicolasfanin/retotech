@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/default_margin">
+    tools:background="@drawable/main_background">
 
     <TextView
         android:id="@+id/welcome_text"
@@ -12,28 +12,44 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/login_welcome_title_txt"
-        android:textSize="50dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="40dp"
+        android:padding="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/instructions_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/login_welcome_message_txt"
-        app:layout_constraintBottom_toTopOf="@id/login_phone_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/welcome_text" />
 
     <ImageView
         android:id="@+id/login_phone_image"
         android:layout_width="wrap_content"
         android:layout_height="150dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/ic_phone_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/welcome_text"
+        app:layout_constraintBottom_toTopOf="@id/instructions_text"/>
+
+    <TextView
+        android:id="@+id/instructions_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:gravity="center"
+        android:text="@string/login_welcome_message_txt"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_phone_image" />
+
+    <ProgressBar
+        android:id="@+id/authentication_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="@string/login_welcome_message_txt"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/instructions_text" />
@@ -48,8 +64,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_phone_image"
-        tools:visibility="gone">
+        app:layout_constraintTop_toBottomOf="@id/authentication_progress_bar"
+        tools:visibility="visible">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -67,7 +83,7 @@
                 android:drawablePadding="8dp"
                 android:hint="@string/login_phone_hint_example"
                 android:inputType="phone"
-                android:text="+5493517016089"
+                android:maxLength="10"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/send_phone_number_button"
@@ -80,6 +96,8 @@
                 android:layout_height="30dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/ic_send"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/authenticate_phone_number_edit_text"
@@ -100,8 +118,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_phone_image"
-        tools:visibility="visible">
+        app:layout_constraintTop_toBottomOf="@id/authentication_progress_bar"
+        tools:visibility="gone">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -116,9 +134,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:drawablePadding="8dp"
-                android:hint="123456"
+                android:hint="@string/hint_phone_code"
                 android:inputType="phone"
-                android:text="123456"
+                android:maxLength="6"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/authenticate_send_code_button"
@@ -131,14 +149,14 @@
                 android:layout_height="30dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/ic_send"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/authenticate_code_edit_text"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

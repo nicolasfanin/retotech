@@ -4,15 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp">
+    tools:background="@drawable/main_background">
+
+    <ImageButton
+        android:id="@+id/home_sign_out_button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_log_out"
+        android:contentDescription="@string/home_sign_out"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/home_create_client_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_top_margin"
-        android:text="Create Client!"
+        android:text="@string/home_create_client_title"
+        android:textColor="@color/white"
         android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,7 +33,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxLines="1"
-        android:text="Please insert data and create a client!"
+        android:text="@string/home_create_client_instructions"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/home_create_client_text_view" />
@@ -32,11 +44,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_top_margin"
-        android:hint="Name"
+        android:hint="@string/hint_name"
         android:imeOptions="actionNext"
-        android:inputType="text"
+        android:inputType="textCapWords|textPersonName"
         android:maxLines="1"
         android:nextFocusDown="@id/surname_edit_text"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/home_description_text_view" />
@@ -46,11 +60,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_top_margin"
-        android:inputType="text"
-        android:hint="Surname"
+        android:hint="@string/hint_surname"
         android:imeOptions="actionNext"
+        android:inputType="textCapWords|textPersonName"
         android:maxLines="1"
         android:nextFocusDown="@id/age_edit_text"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/name_edit_text" />
@@ -60,12 +76,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_top_margin"
-        android:hint="Age"
+        android:hint="@string/hint_age"
         android:imeOptions="actionDone"
         android:inputType="number"
         android:maxLength="3"
         android:maxLines="1"
         android:nextFocusDown="@id/birth_date_edit_text"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/surname_edit_text" />
@@ -77,10 +95,12 @@
         android:layout_marginTop="@dimen/default_top_margin"
         android:clickable="true"
         android:focusable="false"
-        android:hint="Birth Date: 27/04/1986"
+        android:hint="@string/hint_brth_date"
         android:inputType="date"
         android:maxLines="1"
         android:nextFocusDown="@id/create_client_button"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/age_edit_text" />
@@ -90,12 +110,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_top_margin"
-        android:hint="CREATE CLIENT"
         android:background="@color/disabled_button"
         android:enabled="false"
+        android:text="@string/create_client_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

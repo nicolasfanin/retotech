@@ -1,9 +1,34 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">RetoTech!</string>
 
     //Login screen
     <string name="login_welcome_title_txt">Welcome to RetoTech!</string>
-    <string name="login_welcome_message_txt">Please validate your phone number to login!</string>
+    <string name="login_welcome_message_txt">Please validate your phone number to login. You will receive an SMS with a validation code. This
+    action could have associated costs.</string>
+    <string name="login_code_validation_message_txt">You will receive a code from SMS, please insert here</string>
     <string name="login_init_with_facebook_button">Init with Facebook</string>
     <string name="login_phone_hint_example">Ej: 3513583940</string>
+    <string name="login_please_verify_phone_number_format">Please verify your phone number format!</string>
+
+    //Home screen
+    <string name="close_session_title">Close session?</string>
+    <string name="close_session_message">Are you sure you want to close session?</string>
+    <string name="close_session_positive_button">Accept</string>
+    <string name="close_session_negative_button">Cancel</string>
+    <string name="create_client_title">Create a new client on Firebase?</string>
+    <string name="create_client_message">This action will create a new Client on Firebase Database</string>
+    <string name="create_client_positive_button">Accept</string>
+    <string name="create_client_negative_button">Cancel</string>
+    <string name="create_client_button">CREATE CLIENT</string>
+    <string name="created_client_success">Created client in database with id: %1$s</string>
+    <string name="code_verification_error_message">Please verify your code!</string>
+    <string name="home_sign_out">Sign out</string>
+    <string name="home_create_client_title">Create Client!</string>
+    <string name="home_create_client_instructions">Please insert data and create a client</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_surname">Surname</string>
+    <string name="hint_age">Age</string>
+    <string name="hint_brth_date">Birth Date: 27/04/1986</string>
+    <string name="hint_phone_code">123456</string>
+
 </resources>

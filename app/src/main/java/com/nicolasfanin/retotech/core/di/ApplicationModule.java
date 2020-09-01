@@ -9,7 +9,6 @@ import com.nicolasfanin.retotech.data.repository.CreateClientRepoImpl;
 import com.nicolasfanin.retotech.data.repository.LoginRepoImpl;
 import com.nicolasfanin.retotech.domain.repository.CreateClientRepo;
 import com.nicolasfanin.retotech.domain.repository.LoginRepo;
-import com.nicolasfanin.retotech.presentation.viewmodel.AuthViewModel;
 
 import javax.inject.Singleton;
 
