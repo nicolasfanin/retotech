@@ -3,8 +3,9 @@
 
     //Login screen
     <string name="login_welcome_title_txt">Welcome to RetoTech!</string>
-    <string name="login_welcome_message_txt">Please validate your phone number to login!</string>
-    <string name="login_code_validation_message_txt">You will receive a code from SMS, please insert here!</string>
+    <string name="login_welcome_message_txt">Please validate your phone number to login. You will receive an SMS with a validation code. This
+    action could have associated costs.</string>
+    <string name="login_code_validation_message_txt">You will receive a code from SMS, please insert here</string>
     <string name="login_init_with_facebook_button">Init with Facebook</string>
     <string name="login_phone_hint_example">Ej: 3513583940</string>
     <string name="login_please_verify_phone_number_format">Please verify your phone number format!</string>
@@ -23,7 +24,7 @@
     <string name="code_verification_error_message">Please verify your code!</string>
     <string name="home_sign_out">Sign out</string>
     <string name="home_create_client_title">Create Client!</string>
-    <string name="home_create_client_instructions">Please insert data and create a client!</string>
+    <string name="home_create_client_instructions">Please insert data and create a client</string>
     <string name="hint_name">Name</string>
     <string name="hint_surname">Surname</string>
     <string name="hint_age">Age</string>
