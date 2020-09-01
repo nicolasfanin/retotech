@@ -55,7 +55,7 @@ public class SplashFragment extends BaseFragment {
     }
 
     private void initLoginNavigation() {
-        Navigation.findNavController(requireView()).navigate(R.id.action_splashFragment_to_loginFragment);
+        Navigation.findNavController(requireView()).navigate(R.id.action_splashFragment_to_authenticationFragment2);
     }
 
     private void initHomeNavigation() {

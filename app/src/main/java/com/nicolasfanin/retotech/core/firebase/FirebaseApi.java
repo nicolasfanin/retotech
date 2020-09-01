@@ -27,11 +27,11 @@ public class FirebaseApi implements Executor {
 
     public void verifyPhoneNumber(String phoneNumber, PhoneAuthProvider.OnVerificationStateChangedCallbacks authCallback) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                phoneNumber,        // Phone number to verify
-                60L,                 // Timeout duration
-                TimeUnit.SECONDS,   // Unit of timeout
-                TaskExecutors.MAIN_THREAD,               // Activity (for callback binding)
-                authCallback);        // OnVerificationStateChangedCallbacks
+                phoneNumber,
+                60L,
+                TimeUnit.SECONDS,
+                TaskExecutors.MAIN_THREAD,
+                authCallback);
     }
 
     public PhoneAuthCredential getCredential(String verificationId, String code) {

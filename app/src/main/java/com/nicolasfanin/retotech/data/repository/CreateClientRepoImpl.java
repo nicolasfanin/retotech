@@ -16,7 +16,6 @@ public class CreateClientRepoImpl implements CreateClientRepo {
         this.firebaseRealTimeDatabase = firebaseRealTimeDatabase;
     }
 
-
     @Override
     public void createClient(ClientModel clientModel, DatabaseReference.CompletionListener listener) {
         firebaseRealTimeDatabase.createClient(clientModel, listener);

@@ -8,19 +8,11 @@
         android:name="com.nicolasfanin.retotech.presentation.fragment.SplashFragment"
         android:label="SplashFragment" >
         <action
-            android:id="@+id/action_splashFragment_to_loginFragment"
-            app:destination="@id/authenticateFragment" />
-        <action
             android:id="@+id/action_splashFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/authenticateFragment"
-        android:name="com.nicolasfanin.retotech.presentation.fragment.AuthenticateFragment"
-        android:label="AuthenticateFragment">
         <action
-            android:id="@+id/action_authenticateFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_splashFragment_to_authenticationFragment2"
+            app:destination="@id/authenticationFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -29,5 +21,13 @@
         <action
             android:id="@+id/action_homeFragment_to_splashFragment"
             app:destination="@id/splashFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authenticationFragment"
+        android:name="com.nicolasfanin.retotech.presentation.fragment.AuthenticationFragment"
+        android:label="AuthenticationFragment" >
+        <action
+            android:id="@+id/action_authenticationFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

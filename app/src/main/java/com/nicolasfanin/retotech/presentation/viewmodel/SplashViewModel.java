@@ -28,5 +28,4 @@ public class SplashViewModel extends BaseViewModel {
                                        .subscribe(value -> user.setValue(value),
                                                error -> user.setValue(EMPTY_VALUE)));
     }
-
 }

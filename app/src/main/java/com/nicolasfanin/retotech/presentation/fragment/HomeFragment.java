@@ -117,18 +117,18 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(getActivity())
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle(getString(R.string.close_session_title))
-                    .setMessage(getString(R.string.close_session_message))
-                    .setPositiveButton(R.string.close_session_positive_button, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            viewModel.signOut();
-                            Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment_to_splashFragment);
-                        }
-                    })
-                    .setNegativeButton(R.string.close_session_negative_button, null)
-                    .show();
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setTitle(getString(R.string.close_session_title))
+                        .setMessage(getString(R.string.close_session_message))
+                        .setPositiveButton(R.string.close_session_positive_button, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                viewModel.signOut();
+                                Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment_to_splashFragment);
+                            }
+                        })
+                        .setNegativeButton(R.string.close_session_negative_button, null)
+                        .show();
             }
         });
     }
@@ -179,6 +179,6 @@ public class HomeFragment extends BaseFragment {
         ageEditText.setText(EMPTY_VALUE);
         birthDateEditText.setText(EMPTY_VALUE);
 
-        Toast.makeText(getContext(), "Created client in database with id: " + s, Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), getString(R.string.created_client_success, s), Toast.LENGTH_LONG).show();
     }
 }

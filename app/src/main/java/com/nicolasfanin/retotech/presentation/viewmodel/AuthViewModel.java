@@ -28,7 +28,6 @@ public class AuthViewModel extends BaseViewModel {
 
     public MutableLiveData<String> verificationId = new MutableLiveData<>();
     public MutableLiveData<PhoneAuthCredential> credential = new MutableLiveData<>();
-    public MutableLiveData<FirebaseUser> user = new MutableLiveData<>();
     public MutableLiveData<AuthResult> authResult = new MutableLiveData<>();
 
     @Inject

@@ -20,7 +20,6 @@ public class CreateClientUseCase {
     public void createClient(ClientModel clientModel,
             DatabaseReference.CompletionListener listener) {
         repository.createClient(clientModel, listener);
-        //return Single.fromCallable().subscribeOn(Schedulers.io());
     }
 
 }
