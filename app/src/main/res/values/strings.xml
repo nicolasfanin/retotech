@@ -15,11 +15,19 @@
     <string name="close_session_positive_button">Accept</string>
     <string name="close_session_negative_button">Cancel</string>
     <string name="create_client_title">Create a new client on Firebase?</string>
-    <string name="create_client_message">This action will create a new Client on Firebase Database!</string>
+    <string name="create_client_message">This action will create a new Client on Firebase Database</string>
     <string name="create_client_positive_button">Accept</string>
     <string name="create_client_negative_button">Cancel</string>
     <string name="create_client_button">CREATE CLIENT</string>
     <string name="created_client_success">Created client in database with id: %1$s</string>
     <string name="code_verification_error_message">Please verify your code!</string>
+    <string name="home_sign_out">Sign out</string>
+    <string name="home_create_client_title">Create Client!</string>
+    <string name="home_create_client_instructions">Please insert data and create a client!</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_surname">Surname</string>
+    <string name="hint_age">Age</string>
+    <string name="hint_brth_date">Birth Date: 27/04/1986</string>
+    <string name="hint_phone_code">123456</string>
 
 </resources>

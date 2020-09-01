@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@drawable/main_background"
-    android:layout_margin="@dimen/default_margin">
+    tools:background="@drawable/main_background">
 
     <TextView
         android:id="@+id/welcome_text"
@@ -14,7 +13,9 @@
         android:gravity="center"
         android:text="@string/login_welcome_title_txt"
         android:textColor="@color/white"
-        android:textSize="50dp"
+        android:textStyle="bold"
+        android:textSize="40dp"
+        android:padding="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -133,7 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:drawablePadding="8dp"
-                android:hint="123456"
+                android:hint="@string/hint_phone_code"
                 android:inputType="phone"
                 android:maxLength="6"
                 android:textAlignment="center"
@@ -155,9 +156,7 @@
                 app:layout_constraintStart_toEndOf="@id/authenticate_code_edit_text"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

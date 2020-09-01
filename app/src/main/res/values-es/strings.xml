@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RetoTech!</string>
+    <string name="login_welcome_title_txt">Bienvenido a RetoTech!!!</string>
+    <string name="login_welcome_message_txt">Valida tu número de telefono para iniciar sesión!</string>
+    <string name="login_code_validation_message_txt">Recibirás un codigo de verificación por sms</string>
+    <string name="login_init_with_facebook_button">Iniciar con Facebook</string>
+    <string name="login_phone_hint_example">Ej: 3513583940</string>
+    <string name="login_please_verify_phone_number_format">Por favor, revisa el format de tu número de teléfono.</string>
+    <string name="close_session_title">¿Cerrar sesión?</string>
+    <string name="close_session_message">¿Estas seguro que deseas cerrar sesión?</string>
+    <string name="close_session_positive_button">Aceptar</string>
+    <string name="close_session_negative_button">Cancelar</string>
+    <string name="create_client_title">¿Crear un nuevo cliente en Firebase?</string>
+    <string name="create_client_message">Esto creará un nuevo registro de un nuevo Cliente en Firebase.</string>
+    <string name="create_client_positive_button">Aceptar</string>
+    <string name="create_client_negative_button">Cancelar</string>
+    <string name="create_client_button">CREAR CLIENTE</string>
+    <string name="created_client_success">Cliente creado correctamente con el id: %1$s</string>
+    <string name="code_verification_error_message">Por favor, verifica tú codigo!</string>
+    <string name="home_sign_out">Cerrar sesión</string>
+    <string name="home_create_client_title">Crear cliente!</string>
+    <string name="home_create_client_instructions">Por favor ingrese los datos de su nuevo cliente!</string>
+    <string name="hint_name">Nombre</string>
+    <string name="hint_surname">Apellido</string>
+    <string name="hint_age">Edad</string>
+    <string name="hint_brth_date">Fecha de Nacimeinto: 27/04/1986</string>
+</resources>

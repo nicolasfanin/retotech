@@ -9,10 +9,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.nicolasfanin.retotech.R;
@@ -174,4 +171,6 @@ public class HomeFragment extends BaseFragment {
 
         Toast.makeText(getContext(), getString(R.string.created_client_success, s), Toast.LENGTH_LONG).show();
     }
+
+
 }

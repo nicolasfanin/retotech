@@ -1,9 +1,11 @@
 package com.nicolasfanin.retotech.presentation.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -55,6 +57,7 @@ public class AuthenticationFragment extends BaseFragment {
         binding.sendPhoneNumberButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                hideSoftKeyboard();
                 showLoader();
                 String phoneNumber = authenticatePhoneEditText.getText().toString();
                 if (isValidPhoneNumber(phoneNumber)) {
@@ -71,6 +74,7 @@ public class AuthenticationFragment extends BaseFragment {
         binding.authenticateSendCodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                hideSoftKeyboard();
                 showLoader();
                 viewModel.verifyCode(loginPhoneEditText.getText().toString());
             }
@@ -122,9 +126,11 @@ public class AuthenticationFragment extends BaseFragment {
     }
 
     private void onAuthResult(AuthResult authResult) {
-        if(authResult != null) {
+        if (authResult != null) {
             Navigation.findNavController(requireView()).navigate(R.id.action_authenticationFragment_to_homeFragment);
         } else {
+            hideSoftKeyboard();
+            hideLoader();
             Toast.makeText(getContext(), R.string.code_verification_error_message, Toast.LENGTH_LONG).show();
         }
     }
@@ -149,5 +155,13 @@ public class AuthenticationFragment extends BaseFragment {
 
     private void hideLoader() {
         binding.authenticationProgressBar.setVisibility(View.INVISIBLE);
+    }
+
+    private void hideSoftKeyboard() {
+        if (getActivity().getCurrentFocus() == null) {
+            return;
+        }
+        InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
     }
 }
