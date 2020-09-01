@@ -1,4 +1,4 @@
-# retotech
+# Retotech
 
 <b>In this Repo you will find a Sample app called "RetoTech"</b>
 
@@ -21,4 +21,6 @@ The base Architecture that I've used here:
 
 Activity / Fragment ----> View Model (LiveData) ----> Use Case ----> Repository ----> Firebase.
 
-Main language: Java
+Some Screenshots:
+
+
