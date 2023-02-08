@@ -4,7 +4,7 @@
 
 Basically this app makes login with your phone number, then ask for a verification code and once you are logged in you will can fill a form with basics labels and create a new register in real time firebase database.
 
-This was made in Java, because it was a customer requirement.
+This was made in Java, because it was a customer requirement. And only I had less than one week to build it.
 
 Some libraries and techinques I've used here:
 
